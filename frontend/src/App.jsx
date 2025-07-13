@@ -71,6 +71,7 @@ import SingleSaleByEmployee from "./layout/Pages/Employee/MySale/SingleSaleByEmp
 import ReturnSalePage from "./layout/Pages/Employee/ReturnSale/ReturnSalePage.jsx";
 import AllContacts from "./layout/Pages/Admin/Contact/AllContacts.jsx";
 import SingleContactDetails from "./layout/Pages/Admin/Contact/SingleContactDetails.jsx";
+import Search from "./layout/Pages/Search.jsx";
 
 const App = () => {
   const { isVerified, user } = useSelector((state) => state.auth);
@@ -112,6 +113,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          {/* <Route path="/search" element={<Search />} /> */}
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<SingleProductDetails />} />
           <Route path="/cart" element={<Cart />} />

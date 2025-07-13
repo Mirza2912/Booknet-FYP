@@ -74,22 +74,29 @@ const Products = () => {
   const stock = inStock ? true : outStock ? false : undefined;
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
-      Dispatch(clearError());
-    }
+    const delayDebounce = setTimeout(() => {
+      if (error) {
+        toast.error(error);
+        Dispatch(clearError());
+      }
+      // console.log(keyword);
 
-    Dispatch(
-      getAllProducts({
-        stock,
-        category,
-        price,
-        ratings,
-        keyword,
-        page: currentPage,
-      })
-    );
-  }, [price, category, currentPage, stock, ratings, error, Dispatch, keyword]);
+      Dispatch(
+        getAllProducts({
+          stock,
+          category,
+          price,
+          ratings,
+          keyword,
+          page: currentPage,
+        })
+      );
+    }, 500); // debounce delay in ms
+
+    return () => {
+      clearTimeout(delayDebounce); // clears the timeout if dependency changes before 500ms
+    };
+  }, [price, category, currentPage, stock, ratings, keyword, error, Dispatch]);
 
   useEffect(() => {
     Dispatch(getAllCategories());
